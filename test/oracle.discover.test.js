@@ -8,7 +8,7 @@ var db;
 
 describe('discoverModels', function() {
   before(function() {
-    var config = require('rc')('loopback', {dev: {oracle: {}}}).dev.oracle;
+    var config = require('rc')('loopback', {test: {oracledb: {}}}).test.oracledb;
     db = new DataSource(require('../'), config);
   });
 
@@ -177,10 +177,9 @@ describe('discoverModels', function() {
 
   describe('Discover LDL schema from a table', function() {
     it('should return an LDL schema for INVENTORY', function(done) {
-      db.discoverSchema('INVENTORY', {owner: 'STRONGLOOP'}, function(err, schema) {
+      db.discoverSchema('INVENTORY', function(err, schema) {
         // console.log('%j', schema);
         assert(schema.name === 'Inventory');
-        assert(schema.options.oracle.schema === 'STRONGLOOP');
         assert(schema.options.oracle.table === 'INVENTORY');
         assert(schema.properties.productId);
         assert(schema.properties.productId.type === 'String');

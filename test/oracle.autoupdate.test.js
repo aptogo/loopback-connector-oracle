@@ -1,3 +1,4 @@
+require('./init/init');
 var assert = require('assert');
 var should = require('should');
 var ds;
@@ -15,7 +16,6 @@ describe('Oracle connector', function () {
       "options": {
         "idInjection": false,
         "oracle": {
-          "schema": "TEST",
           "table": "CUSTOMER_TEST"
         }
       },
@@ -48,7 +48,6 @@ describe('Oracle connector', function () {
       "options": {
         "idInjection": false,
         "oracle": {
-          "schema": "TEST",
           "table": "CUSTOMER_TEST"
         }
       },

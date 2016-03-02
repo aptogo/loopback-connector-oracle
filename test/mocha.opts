@@ -1,2 +1,2 @@
 --globals getSchema
---timeout 15000
+--timeout 30000

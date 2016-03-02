@@ -1,3 +1,4 @@
+require('./init/init');
 var assert = require('assert');
 var ds, Note;
 
@@ -62,7 +63,7 @@ describe('Oracle connector', function () {
 
   it('should support clob size > 32k chars', function (done) {
 
-    var clob = generateString(50000, 'C');
+    var clob = generateString(32100, 'C');
     Note.create({note: clob}, function (err, note) {
       assert(!err);
       Note.findById(note.id, function (err, note) {
