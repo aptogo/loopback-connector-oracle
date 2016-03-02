@@ -83,6 +83,13 @@ describe('oracle connector', function () {
         });
     });
 
+  it('should delete by id', function(done) {
+    Post.deleteById(1, function(err, result) {
+      result.should.have.property('count', 1);
+      done();
+    });
+  });
+
   it('should escape number values to defect SQL injection in findById',
     function(done) {
       Post.findById('(SELECT 1+1)', function(err, p) {

@@ -1,6 +1,6 @@
 var DataSource = require('loopback-datasource-juggler').DataSource;
 
-var config = require('rc')('loopback', {test: {oracle: {}}}).test.oracle;
+var config = require('rc')('loopback', {test: {oracledb: {}}}).test.oracledb;
 config.maxConn = 64;
 
 var db;
