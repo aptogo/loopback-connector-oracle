@@ -1,8 +1,11 @@
+
+var moment = require('moment');
+var should = require('should');
+
+require('./init/init');
 require('loopback-datasource-juggler/test/common.batch.js');
 require('loopback-datasource-juggler/test/include.test.js');
 
-require('./init/init');
-var should = require('should');
 var Post, db;
 
 describe('oracle connector', function () {
@@ -12,7 +15,8 @@ describe('oracle connector', function () {
 
     Post = db.define('PostWithBoolean', {
       title: { type: String, length: 255, index: true },
-      point: { type: 'GeoPoint' },
+      date: { type: Date },
+      timestamp: { type: Date, oracle: {dataType: 'TIMESTAMP'}},
       content: { type: String },
       approved: Boolean
     });
@@ -130,5 +134,31 @@ describe('oracle connector', function () {
         done();
       });
     });
+
+  it('should support date types', function(done) {
+    Post.create({title: 'T1', date: moment('2016-01-01T12:00:01Z').toDate(), approved: true}, function(err, p) {
+      should.not.exists(err);
+      post = p;
+      Post.findById(p.id, function(err, p) {
+        should.not.exists(err);
+        p.date.should.be.a.Date();
+        moment(p.date).isSame(moment('2016-01-01T12:00:01Z')).should.be.true();
+        done();
+      });
+    });
+  });
+
+  it('should support timestamp types', function(done) {
+    Post.create({title: 'T1', timestamp: moment('2016-01-01T12:00:02Z').toDate(), approved: true}, function(err, p) {
+      should.not.exists(err);
+      post = p;
+      Post.findById(p.id, function(err, p) {
+        should.not.exists(err);
+        p.timestamp.should.be.a.Date();
+        moment(p.timestamp).isSame(moment('2016-01-01T12:00:02Z')).should.be.true();
+        done();
+      });
+    });
+  });
 
 });
