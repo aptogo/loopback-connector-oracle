@@ -22,8 +22,8 @@ before(function (done) {
   ds.automigrate(done);
 });
 
-describe('Oracle connector', function () {
-  it('should be ok', function (done) {
+describe('Oracle Connector', function () {
+  it('should persist GeoPoint', function (done) {
     SpatialModel.create({name: 'test1', point:{lat: 52, lng:-1}}, function(err, result) {
       should.not.exists(err);
       SpatialModel.findById(result.id, function(err, result) {
