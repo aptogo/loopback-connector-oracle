@@ -1,5 +1,5 @@
-require('loopback-datasource-juggler/test/common.batch.js');
-require('loopback-datasource-juggler/test/include.test.js');
+//require('loopback-datasource-juggler/test/common.batch.js');
+//('loopback-datasource-juggler/test/include.test.js');
 
 require('./init/init');
 var should = require('should');
@@ -12,6 +12,7 @@ describe('oracle connector', function () {
 
     Post = db.define('PostWithBoolean', {
       title: { type: String, length: 255, index: true },
+      point: { type: 'GeoPoint' },
       content: { type: String },
       approved: Boolean
     });
