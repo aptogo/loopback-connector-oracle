@@ -1,9 +1,8 @@
 {
-  "name": "loopback-connector-oracle",
+  "name": "loopback-connector-oracledb",
   "version": "2.3.1",
-  "description": "Loopback Oracle Connector",
+  "description": "Loopback OracleDB Connector",
   "keywords": [
-    "StrongLoop",
     "LoopBack",
     "Oracle",
     "DataSource",
@@ -11,7 +10,7 @@
   ],
   "main": "index.js",
   "scripts": {
-    "test": "./run-tests"
+    "test": "mocha"
   },
   "dependencies": {
     "async": "^0.9.0",
@@ -33,5 +32,5 @@
     "type": "git",
     "url": "https://github.com/strongloop/loopback-connector-oracle.git"
   },
-  "license": "SEE LICENSE IN LICENSE.md"
+  "license": "MIT"
 }
